@@ -1,0 +1,33 @@
+export const mockProducts = [];
+
+export const mockCategories = [
+  { id: 1, name: 'Louis Vuitton', image: '/lv.jpg' },
+  { id: 2, name: 'Adidas', image: '/ADIDAS.jpg' },
+  { id: 3, name: 'Zara', image: '/zara.jpg' },
+  { id: 4, name: 'Air Jordan', image: '/jordan.jpg' },
+  { id: 5, name: 'Nike Air', image: '/NIKE.jpg' },
+  { id: 6, name: 'Dior', image: '/DIOR.jpg' },
+  { id: 7, name: 'Timberland', image: '/TIMBERLAND.jpg' },
+  { id: 8, name: 'Balenciaga', image: '/BALENCIGA.jpg' },
+  { id: 9, name: 'Alexander McQueen', image: '/ALEXADER-MCQUEEN.jpg' },
+  { id: 10, name: 'Philipp Plein', image: '/philipp-plein.jpg' },
+  { id: 11, name: 'New Balance', image: '/NEW-BLANCE.jpg' },
+  { id: 12, name: 'Adidas Campus', image: '/campus.jpg' },
+  { id: 13, name: 'Dolce & Gabbana', image: '/D&C.jpg' },
+  { id: 14, name: 'Lanvin', image: '/lanvin.jpg' },
+  { id: 15, name: 'ASICS Gel', image: '/asics-gel.jpg' },
+  { id: 16, name: 'Gucci', image: '/gucci.jpg' },
+  { id: 17, name: 'Tommy Hilfiger', image: '/TOOMY-HILFIGER.jpg' },
+  { id: 18, name: 'Polo Ralph Lauren', image: '/POLO.jpg' },
+  { id: 19, name: 'Hugo Boss', image: '/BOSS.jpg' },
+  { id: 20, name: 'Armani', image: '/ARMANI.jpg' },
+  { id: 21, name: 'Valentino', image: '/VALANTINUO.jpg' },
+  { id: 22, name: 'Vans', image: '/VANS.jpg' },
+  { id: 23, name: 'Nike', image: '/NIKE.jpg' },
+  { id: 24, name: 'Off White', image: '/OFF-WHITE.jpg' },
+  { id: 25, name: 'Amiri', image: '/AMIRI.jpg' },
+  { id: 26, name: 'Bape', image: '/BABE.jpg' },
+  { id: 27, name: 'Prada', image: '/PRADA.jpg' },
+  { id: 28, name: 'Moncler', image: '/MONCLER.jpg' },
+  { id: 29, name: 'Hoka', image: '/HOKA.jpg' }
+];
