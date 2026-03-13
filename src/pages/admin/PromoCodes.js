@@ -100,6 +100,40 @@ const PromoCodes = () => {
     });
   };
 
+  const deletePromoCode = async (id) => {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'This promo code will be permanently deleted!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      await axios.delete(`${API_URL}/api/promo-codes/${id}`);
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Promo code deleted successfully',
+        confirmButtonColor: '#000',
+        timer: 2000
+      });
+      fetchPromoCodes();
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to delete promo code',
+        confirmButtonColor: '#000'
+      });
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6">Promo Codes</h2>
@@ -199,7 +233,7 @@ const PromoCodes = () => {
               </span>
             </div>
             
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-2 gap-4 text-sm mb-4">
               <div>
                 <p className="text-gray-600">Created:</p>
                 <p className="font-semibold">{formatDate(promo.createdAt)}</p>
@@ -217,6 +251,12 @@ const PromoCodes = () => {
                 <p className="font-semibold">{promo.validDays} days</p>
               </div>
             </div>
+            
+            <button
+              onClick={() => deletePromoCode(promo._id)}
+              className="w-full bg-red-600 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-700 transition">
+              DELETE CODE
+            </button>
           </div>
         ))}
         </div>

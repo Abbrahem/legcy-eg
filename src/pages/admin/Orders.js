@@ -51,6 +51,40 @@ const Orders = () => {
     }
   };
 
+  const deleteOrder = async (id) => {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'This order will be permanently deleted!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6b7280',
+      confirmButtonText: 'Yes, delete it',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (!result.isConfirmed) return;
+
+    try {
+      await axios.delete(`${API_URL}/api/orders/${id}`);
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Order deleted successfully',
+        confirmButtonColor: '#000',
+        timer: 2000
+      });
+      fetchOrders();
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to delete order',
+        confirmButtonColor: '#000'
+      });
+    }
+  };
+
   const formatDate = (date) => {
     return new Date(date).toLocaleString('en-US', {
       year: 'numeric',
@@ -139,13 +173,19 @@ const Orders = () => {
               <select
                 value={order.status || 'pending'}
                 onChange={(e) => updateStatus(order._id, e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-black">
+                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-black mb-3">
                 <option value="pending">Pending</option>
                 <option value="processing">Processing</option>
                 <option value="shipped">Shipped</option>
                 <option value="delivered">Delivered</option>
                 <option value="cancelled">Cancelled</option>
               </select>
+              
+              <button
+                onClick={() => deleteOrder(order._id)}
+                className="w-full bg-red-600 text-white py-2 px-4 rounded-lg font-bold hover:bg-red-700 transition">
+                DELETE ORDER
+              </button>
             </div>
           </div>
         ))}
