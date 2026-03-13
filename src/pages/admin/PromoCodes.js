@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 const PromoCodes = () => {
   const [promoCodes, setPromoCodes] = useState([]);
@@ -34,7 +35,7 @@ const PromoCodes = () => {
   const fetchPromoCodes = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/promo-codes');
+      const response = await axios.get(`${API_URL}/api/promo-codes`);
       setPromoCodes(response.data);
     } catch (error) {
       console.error('Error fetching promo codes:', error);
@@ -69,7 +70,7 @@ const PromoCodes = () => {
         didOpen: () => Swal.showLoading()
       });
 
-      await axios.post('http://localhost:5000/api/promo-codes/create', formData);
+      await axios.post(`${API_URL}/api/promo-codes/create`, formData);
       
       Swal.fire({
         icon: 'success',

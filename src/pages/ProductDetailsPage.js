@@ -4,6 +4,7 @@ import { FiHeart, FiMinus, FiPlus } from 'react-icons/fi';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import ProductCard from '../components/ProductCard';
+import API_URL from '../config/api';
 
 const ProductDetailsPage = ({ addToCart, addToWishlist }) => {
   const { id } = useParams();
@@ -26,12 +27,12 @@ const ProductDetailsPage = ({ addToCart, addToWishlist }) => {
   const fetchProduct = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+      const response = await axios.get(`${API_URL}/api/products/${id}`);
       setProduct(response.data);
       setMainImage(response.data.images[0]);
       
       // Fetch all products and get 4 random ones (excluding current product)
-      const allProductsResponse = await axios.get('http://localhost:5000/api/products');
+      const allProductsResponse = await axios.get(`${API_URL}/api/products`);
       const otherProducts = allProductsResponse.data.filter(p => p._id !== id);
       
       // Shuffle and get 4 random products

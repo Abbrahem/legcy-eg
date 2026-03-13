@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import API_URL from '../../config/api';
 
 const AddProduct = ({ editProduct = null, onSave = null }) => {
   const categories = [
@@ -42,7 +43,7 @@ const AddProduct = ({ editProduct = null, onSave = null }) => {
       const formData = new FormData();
       files.forEach(file => formData.append('images', file));
 
-      const response = await axios.post('http://localhost:5000/api/upload', formData, {
+      const response = await axios.post(`${API_URL}/api/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 
@@ -64,7 +65,7 @@ const AddProduct = ({ editProduct = null, onSave = null }) => {
 
     try {
       if (editProduct) {
-        await axios.put(`http://localhost:5000/api/products/${editProduct._id}`, formData);
+        await axios.put(`${API_URL}/api/products/${editProduct._id}`, formData);
         Swal.fire({
           icon: 'success',
           title: 'Updated!',
@@ -74,7 +75,7 @@ const AddProduct = ({ editProduct = null, onSave = null }) => {
         });
         if (onSave) onSave();
       } else {
-        await axios.post('http://localhost:5000/api/products', formData);
+        await axios.post(`${API_URL}/api/products`, formData);
         Swal.fire({
           icon: 'success',
           title: 'Added!',

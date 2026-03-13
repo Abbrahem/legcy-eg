@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import AddProduct from './AddProduct';
+import API_URL from '../../config/api';
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,7 @@ const ManageProducts = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/products');
+      const response = await axios.get(`${API_URL}/api/products`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -56,11 +57,11 @@ const ManageProducts = () => {
 
       // Delete images from Cloudinary
       for (const img of images) {
-        await axios.delete('http://localhost:5000/api/upload', { data: { url: img } });
+        await axios.delete(`${API_URL}/api/upload`, { data: { url: img } });
       }
       
       // Delete product
-      await axios.delete(`http://localhost:5000/api/products/${id}`);
+      await axios.delete(`${API_URL}/api/products/${id}`);
       
       Swal.fire({
         icon: 'success',
@@ -83,7 +84,7 @@ const ManageProducts = () => {
 
   const toggleBestSeller = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/products/bestseller/${id}`);
+      await axios.put(`${API_URL}/api/products/bestseller/${id}`);
       Swal.fire({
         icon: 'success',
         title: 'Updated!',
@@ -114,7 +115,7 @@ const ManageProducts = () => {
 
   const toggleSoldOut = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/sold-out/product/${id}`);
+      await axios.put(`${API_URL}/api/sold-out/product/${id}`);
       Swal.fire({
         icon: 'success',
         title: 'Updated!',

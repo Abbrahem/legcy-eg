@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { mockCategories } from '../data/mockData';
+import API_URL from '../config/api';
 
 const HomePage = ({ addToCart, addToWishlist }) => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const HomePage = ({ addToCart, addToWishlist }) => {
   const fetchProducts = async () => {
     try {
       // Fetch all products
-      const response = await axios.get('http://localhost:5000/api/products');
+      const response = await axios.get(`${API_URL}/api/products`);
       const allProducts = response.data;
       
       // Filter best sellers

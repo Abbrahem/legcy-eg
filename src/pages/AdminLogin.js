@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config/api';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/login', formData);
+      const response = await axios.post(`${API_URL}/api/admin/login`, formData);
       if (response.data.success) {
         localStorage.setItem('adminLoggedIn', 'true');
         navigate('/admin/dashboard');

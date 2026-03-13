@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import API_URL from '../config/api';
 
 const CheckoutPage = ({ cart, setCart }) => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const CheckoutPage = ({ cart, setCart }) => {
 
   const handlePromoCheck = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/promo-codes/validate', {
+      const response = await axios.post(`${API_URL}/api/promo-codes/validate`, {
         code: promoCode
       });
       
@@ -79,11 +80,11 @@ const CheckoutPage = ({ cart, setCart }) => {
       };
 
       // Create order in database
-      await axios.post('http://localhost:5000/api/orders', orderData);
+      await axios.post(`${API_URL}/api/orders`, orderData);
 
       // Use promo code if applied
       if (promoApplied) {
-        await axios.post('http://localhost:5000/api/promo-codes/use', { code: promoCode });
+        await axios.post(`${API_URL}/api/promo-codes/use`, { code: promoCode });
       }
       
       Swal.fire({

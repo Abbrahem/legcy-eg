@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import ProductCard from '../components/ProductCard';
+import API_URL from '../config/api';
 
 const CategoryPage = ({ addToCart, addToWishlist }) => {
   const { name } = useParams();
@@ -19,7 +20,7 @@ const CategoryPage = ({ addToCart, addToWishlist }) => {
   const fetchCategoryProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/api/products/category/${name}`);
+      const response = await axios.get(`${API_URL}/api/products/category/${name}`);
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching category products:', error);

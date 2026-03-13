@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductCard from '../components/ProductCard';
 import { mockCategories } from '../data/mockData';
+import API_URL from '../config/api';
 
 const ProductsPage = ({ addToCart, addToWishlist }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -16,7 +17,7 @@ const ProductsPage = ({ addToCart, addToWishlist }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products');
+      const response = await axios.get(`${API_URL}/api/products`);
       setProducts(response.data);
       setLoading(false);
     } catch (error) {
