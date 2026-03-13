@@ -20,6 +20,7 @@ const ProductDetailsPage = ({ addToCart, addToWishlist }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const fetchProduct = async () => {

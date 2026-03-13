@@ -13,6 +13,7 @@ const CategoryPage = ({ addToCart, addToWishlist }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     fetchCategoryProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name]);
 
   const fetchCategoryProducts = async () => {
